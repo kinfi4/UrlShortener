@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/cut-url" method="POST">
+        {% csrf_token %}
+
+        {% if form.full_url.errors %}
+            <ol>
+                {% for error in form.full_url.errors %}
+                    <li><strong>{{ error|escape }}</strong></li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+        <p class="fieldWrapper">
+            <label for="">{{ form.full_url.label }}</label>
+          {{ form.full_url }}
+        </p>
+
+        <input type="submit" class="submit-button" value="Proceed">
+        <a href="/translate" class="link">Translate shortened url</a>
+    </form>
+{% endblock %}

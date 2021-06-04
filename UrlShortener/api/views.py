@@ -1,8 +1,8 @@
 from django.http import HttpRequest, Http404, HttpResponsePermanentRedirect, HttpResponseBadRequest, JsonResponse
 from django.views import View
 
-from api.handlers import get_real_url, add_new_url
-from api.exception import UnknownUrlError, CantRewriteExistingUrlError
+from api.handlers import get_real_url, add_new_or_get_existing_url
+from api.exception import UnknownUrlError
 
 
 class UrlAPIRedirectView(View):
@@ -23,10 +23,5 @@ class UrlAPIUrlShortener(View):
             return HttpResponseBadRequest(content_type='application/json',
                                           content={'error': 'You did not specified the url'})
 
-        try:
-            url = add_new_url(real_url)
-        except CantRewriteExistingUrlError:
-            return HttpResponseBadRequest(content_type='application/json',
-                                          content={'error': 'Short path for this url already exists'})
-
+        url = add_new_or_get_existing_url(real_url)
         return JsonResponse(status=201, data={'short_url': url})
