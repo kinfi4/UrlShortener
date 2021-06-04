@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -7,9 +6,9 @@ from api.utils import generate_random_string
 from api.exception import CantRewriteExistingUrlError, UnknownUrlError
 
 
-def add_new_url(long_url: str) -> None:
+def add_new_url(long_url: str) -> str:
     try:
-        Url.objects.create(long_url=long_url, short_url=settings.SITE_URL + generate_random_string())
+        return Url.objects.create(long_url=long_url, short_url=generate_random_string()).short_url
     except IntegrityError:
         raise CantRewriteExistingUrlError
 
