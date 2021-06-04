@@ -48,6 +48,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'UrlShortener.wsgi.application'
+SITE_URL = "http://localhost:8000/"
 
 
 DATABASES = {

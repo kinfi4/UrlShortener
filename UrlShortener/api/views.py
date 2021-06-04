@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import JsonResponse, HttpRequest, Http404, HttpResponsePermanentRedirect
+from django.views import View
 
-# Create your views here.
+
+class UrlAPIView(View):
+    def get(self, request: HttpRequest):
+        pass
+
+    def post(self, request: HttpRequest):
+        pass
