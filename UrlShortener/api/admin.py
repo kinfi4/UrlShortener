@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from api.models import Url
+
+
+@admin.register(Url)
+class UrlAdmin(admin.ModelAdmin):
+    ordering = ('-pub_date',)
