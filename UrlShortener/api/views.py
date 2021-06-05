@@ -12,7 +12,7 @@ class UrlAPIRedirectView(View):
         except UnknownUrlError:
             raise Http404
 
-        return HttpResponsePermanentRedirect(real_url)
+        return JsonResponse(data={'real_url': real_url})
 
 
 class UrlAPIUrlShortener(View):
@@ -23,5 +23,9 @@ class UrlAPIUrlShortener(View):
             return HttpResponseBadRequest(content_type='application/json',
                                           content={'error': 'You did not specified the url'})
 
-        url = add_new_or_get_existing_url(real_url)
-        return JsonResponse(status=201, data={'short_url': url})
+        url, created = add_new_or_get_existing_url(real_url)
+
+        if created:
+            return JsonResponse(status=201, data={'short_url': url.short_url})
+        else:
+            return JsonResponse(status=200, data={'short_url': url.short_url})

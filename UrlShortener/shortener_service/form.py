@@ -2,7 +2,7 @@ from django import forms
 
 
 class TranslateUrlForm(forms.Form):
-    short_url = forms.CharField(max_length=100, required=True, label='Enter shortened url: ')
+    short_url = forms.CharField(max_length=7, required=True, label='Enter shortened url: ')
 
 
 class CutUrlForm(forms.Form):
