@@ -3,6 +3,7 @@ body, html {
     padding: 0;
     font-family: Arial, serif;
     font-size: 25px;
+    background-color: #d5d5d5;
 }
 .title{
     text-align: center;
@@ -16,11 +17,14 @@ form{
     text-align: center;
     border: solid 2px #9c9191;
     border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 10px 20px 30px black;
     padding: 20px;
 }
 form .fieldWrapper input{
     padding: 5px 6px;
     margin: 20px;
+    border-radius: 4px;
     width: 90%;
 }
 .link{
@@ -31,4 +35,16 @@ form .fieldWrapper input{
 }
 .link:hover{
     color: aquamarine;
+}
+.submit-button{
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: linear 0.2s;
+    font-weight: bold;
+}
+.submit-button:hover{
+    color: white;
+    background-color: black;
 }
