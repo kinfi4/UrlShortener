@@ -48,3 +48,20 @@ form .fieldWrapper input{
     color: white;
     background-color: black;
 }
+.messages{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.alert{
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 10px;
+}
+.alert-success{
+    background-color: #97f572;
+}
+.alert-error{
+    background-color: #d26b6b;
+}

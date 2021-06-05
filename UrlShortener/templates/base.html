@@ -10,6 +10,14 @@
 </head>
 <body>
 
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <h2 class="title">KinShortener</h2>
 
     {% block content %}

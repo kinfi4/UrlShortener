@@ -4,6 +4,7 @@ from django.http import HttpRequest, HttpResponsePermanentRedirect
 from django.views import View
 from django.urls import reverse, NoReverseMatch
 from django.conf import settings
+from django.contrib import messages
 
 from shortener_service.form import CutUrlForm, TranslateUrlForm
 
@@ -22,15 +23,14 @@ class TranslateUrlView(View):
                       + reverse('api_redirect', args=(form.cleaned_data['short_url'],))
                 result = requests.get(url)
             except NoReverseMatch:
-                # TODO: Write messages about invalid input
+                messages.error(request, 'You entered invalid token', extra_tags='alert alert-error')
                 return render(request, 'translate_url.html', {'form': form})
 
             if result.status_code == 200:
                 real_url = result.json()['real_url']
                 return HttpResponsePermanentRedirect(real_url)
 
-            # TODO: Write messages that did not redirect
-
+            messages.error(request, 'There is no url connected with this token', extra_tags='alert alert-error')
             return render(request, 'translate_url.html', {'form': form})
 
         return render(request, 'translate_url.html', {'form': form})
@@ -53,6 +53,5 @@ class CutUrlView(View):
             form = TranslateUrlForm()
             form.fields['short_url'].initial = short_url
 
-            # TODO: show message that short link created
-
+            messages.success(request, 'Token for link created', extra_tags='alert alert-success')
             return render(request, 'translate_url.html', {'form': form})
