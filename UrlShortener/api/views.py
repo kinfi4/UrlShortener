@@ -1,4 +1,4 @@
-from django.http import HttpRequest, Http404, HttpResponsePermanentRedirect, HttpResponseBadRequest, JsonResponse
+from django.http import HttpRequest, Http404, HttpResponseBadRequest, JsonResponse
 from django.views import View
 
 from api.handlers import get_real_url, add_new_or_get_existing_url

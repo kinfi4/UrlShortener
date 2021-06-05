@@ -8,8 +8,9 @@ body, html {
 .title{
     text-align: center;
     font-size: 40px;
-    text-shadow: 4px 1px #9c9191;
+    text-shadow: 4px 1px 10px #000000;
     letter-spacing: 3px;
+    color: #d5d5d5;
 }
 form{
     width: 20%;
